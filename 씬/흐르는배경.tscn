@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfs7xw16eo28b"]
+
+[ext_resource type="Script" path="res://스크립트/흐르는배경.gd" id="1_6hxv0"]
+[ext_resource type="Texture2D" uid="uid://deskk0j7xm37t" path="res://에셋/background.png" id="1_tixlp"]
+
+[node name="흐르는배경" type="ParallaxBackground"]
+script = ExtResource("1_6hxv0")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(0, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_tixlp")
+centered = false

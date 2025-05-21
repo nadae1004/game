@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://db1it0x3qa4gx"]
+
+[ext_resource type="PackedScene" uid="uid://bfs7xw16eo28b" path="res://씬/흐르는배경.tscn" id="1_dio6t"]
+[ext_resource type="PackedScene" uid="uid://bb6p3gtpci85a" path="res://씬/자동차.tscn" id="2_ei6e0"]
+[ext_resource type="Script" path="res://스크립트/컵케이크생성기.gd" id="3_hf1ic"]
+[ext_resource type="PackedScene" uid="uid://ce4h8c807tecv" path="res://씬/점수표시화면.tscn" id="4_p4jm6"]
+[ext_resource type="Script" path="res://씬/장애물생성기.gd" id="5_n4ghl"]
+
+[node name="게임" type="Node2D"]
+
+[node name="흐르는배경" parent="." instance=ExtResource("1_dio6t")]
+
+[node name="자동차" parent="." instance=ExtResource("2_ei6e0")]
+position = Vector2(474, 850)
+
+[node name="컵케이크생성기" type="Node" parent="."]
+script = ExtResource("3_hf1ic")
+
+[node name="Timer" type="Timer" parent="컵케이크생성기"]
+autostart = true
+
+[node name="장애물생성기" type="Node" parent="."]
+script = ExtResource("5_n4ghl")
+
+[node name="Timer" type="Timer" parent="장애물생성기"]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="점수표시화면" parent="CanvasLayer" instance=ExtResource("4_p4jm6")]
+
+[connection signal="timeout" from="컵케이크생성기/Timer" to="컵케이크생성기" method="_on_timer_timeout"]
+[connection signal="timeout" from="장애물생성기/Timer" to="장애물생성기" method="_on_timer_timeout"]
